@@ -1,8 +1,15 @@
+// disable moving key
+window.addEventListener("keydown", function(e) {
+    if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
+}, false);
 // variable for change step (does not change)
 var changePuzzle = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
 // puzzle 
 var playPuzzle = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
 var pointerX, pointerY;
+var start = false;
 
 const createRandomMatrix =()=> {
     let temp = []
@@ -32,25 +39,32 @@ const createRandomMatrix =()=> {
 const putPuzzlePics =()=>{
     let temp = 0, a=0, b=0;
     for(let i=1; i<=16; i++) {
-        $("#p-"+i).attr("src","/img/"+playPuzzle[a][b++]);
+        $("#p-"+i).attr("src","img/"+playPuzzle[a][b++]);
         if(b==4) {
             b=0;
             a++;
         }
     }
-    $("#p-1").attr("src","/img/pointer.jpg")
+    $("#p-1").attr("src","img/pointer.jpg")
 }
 const movingElement =(event)=>{
+    movedElement(event.which)
+}
+const movedWithButton =(n)=>{
+    if(start)
+        movedElement(n)
+}
+const movedElement =(n)=>{
     let temp;
-    switch(event.which){
+    switch(n){
         // left
         case 37:
             if(pointerX!=0){
                 temp = playPuzzle[pointerY][pointerX]
                 playPuzzle[pointerY][pointerX] = playPuzzle[pointerY][pointerX-1]
                 playPuzzle[pointerY][pointerX-1] = temp
-                $("#p-"+changePuzzle[pointerY][pointerX]).attr("src","/img/"+playPuzzle[pointerY][pointerX])
-                $("#p-"+changePuzzle[pointerY][pointerX-1]).attr("src","/img/"+playPuzzle[pointerY][pointerX-1])
+                $("#p-"+changePuzzle[pointerY][pointerX]).attr("src","img/"+playPuzzle[pointerY][pointerX])
+                $("#p-"+changePuzzle[pointerY][pointerX-1]).attr("src","img/"+playPuzzle[pointerY][pointerX-1])
                 pointerX-=1;
             }
             break;
@@ -60,8 +74,8 @@ const movingElement =(event)=>{
                 temp = playPuzzle[pointerY][pointerX]
                 playPuzzle[pointerY][pointerX] = playPuzzle[pointerY][pointerX+1]
                 playPuzzle[pointerY][pointerX+1] = temp 
-                $("#p-"+changePuzzle[pointerY][pointerX]).attr("src","/img/"+playPuzzle[pointerY][pointerX])
-                $("#p-"+changePuzzle[pointerY][pointerX+1]).attr("src","/img/"+playPuzzle[pointerY][pointerX+1])
+                $("#p-"+changePuzzle[pointerY][pointerX]).attr("src","img/"+playPuzzle[pointerY][pointerX])
+                $("#p-"+changePuzzle[pointerY][pointerX+1]).attr("src","img/"+playPuzzle[pointerY][pointerX+1])
                 pointerX+=1;
             }
             break;
@@ -71,8 +85,8 @@ const movingElement =(event)=>{
                 temp = playPuzzle[pointerY][pointerX]
                 playPuzzle[pointerY][pointerX] = playPuzzle[pointerY-1][pointerX]
                 playPuzzle[pointerY-1][pointerX] = temp 
-                $("#p-"+changePuzzle[pointerY][pointerX]).attr("src","/img/"+playPuzzle[pointerY][pointerX])
-                $("#p-"+changePuzzle[pointerY-1][pointerX]).attr("src","/img/"+playPuzzle[pointerY-1][pointerX])
+                $("#p-"+changePuzzle[pointerY][pointerX]).attr("src","img/"+playPuzzle[pointerY][pointerX])
+                $("#p-"+changePuzzle[pointerY-1][pointerX]).attr("src","img/"+playPuzzle[pointerY-1][pointerX])
                 pointerY-=1;
             }
             break;
@@ -82,8 +96,8 @@ const movingElement =(event)=>{
                 temp = playPuzzle[pointerY][pointerX]
                 playPuzzle[pointerY][pointerX] = playPuzzle[pointerY+1][pointerX]
                 playPuzzle[pointerY+1][pointerX] = temp
-                $("#p-"+changePuzzle[pointerY][pointerX]).attr("src","/img/"+playPuzzle[pointerY][pointerX])
-                $("#p-"+changePuzzle[pointerY+1][pointerX]).attr("src","/img/"+playPuzzle[pointerY+1][pointerX])
+                $("#p-"+changePuzzle[pointerY][pointerX]).attr("src","img/"+playPuzzle[pointerY][pointerX])
+                $("#p-"+changePuzzle[pointerY+1][pointerX]).attr("src","img/"+playPuzzle[pointerY+1][pointerX])
                 pointerY+=1;
             }
             break;
@@ -102,8 +116,9 @@ const checkPuzzle =()=>{
         }
     }
     if(!flag){
-        $("#p-16").attr("src","/img/"+puzzlePics[15])
+        $("#p-16").attr("src","img/"+puzzlePics[15])
         $(document).unbind("keyup");
+        start = false;
         swal({
             title: "You win!",
             icon: "success",
@@ -112,14 +127,15 @@ const checkPuzzle =()=>{
     }
 }
 const startGame =()=>{
-        $(document).unbind("keyup");
-        $("#start").hide();
-        $("#restart").show();
-        createRandomMatrix();
-        putPuzzlePics()
-        pointerX = 0;
-        pointerY = 0;
-        $(document).bind("keyup",movingElement);
+    start = true
+    $(document).unbind("keyup");
+    $("#start").hide();
+    $("#restart").show();
+    createRandomMatrix();
+    putPuzzlePics()
+    pointerX = 0;
+    pointerY = 0;
+    $(document).bind("keyup",movingElement);
 }
 
 $(document).ready(()=>{
