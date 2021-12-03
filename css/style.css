@@ -33,6 +33,9 @@
 .peice img{
     width: 100%;
 }
+.arraw button{
+    font-size: larger;
+}
 @media only screen and (max-width: 450px) {
     .canvas{
         width: 350px;
