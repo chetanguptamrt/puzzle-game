@@ -1,0 +1,65 @@
+.level-link{
+    display: block;
+    text-align: center;
+    margin: 10px;
+    background-color: #005FB2;
+    border-radius: 15px;
+    font-size: x-large;
+    color: white;
+    text-decoration: none;
+}
+.level-link:hover{
+    background-color: #006CCA;
+    color: white;
+    text-decoration: none;
+}
+.nav-custom{
+    background-color: #005299;
+}
+.canvas{
+    width: 400px;
+    height: 400px;
+    border: 1px solid gray;
+    margin: 0px auto;
+}
+.layer{
+    display: flex;
+}
+.peice{
+    width: 100px;
+    height: 100px;
+    border: 1px solid gray;
+}
+.peice img{
+    width: 100%;
+}
+@media only screen and (max-width: 450px) {
+    .canvas{
+        width: 350px;
+        height: 350px;
+    }
+    .peice{
+        width: 87px;
+        height: 87px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .canvas{
+        width: 300px;
+        height: 300px;
+    }
+    .peice{
+        width: 75px;
+        height: 75px;
+    }
+}
+@media only screen and (max-width: 330px) {
+    .canvas{
+        width: 270px;
+        height: 270px;
+    }
+    .peice{
+        width: 67px;
+        height: 67px;
+    }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat | Puzzle Game</title>
+    <link rel="shortcut icon" href="/img/icon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark nav-custom">
+        <a class="navbar-brand" href="/">Puzzle Game</a>
+    </nav>
+
+    <div class="container mt-4">
+        <h2 class="text-center mb-3">Cat Puzzle</h2>
+        <div class="canvas">
+            <div class="layer">
+                <div class="peice"><img id="p-1" src="./img/cat-1.jpg" alt="img"></div>
+                <div class="peice"><img id="p-2" src="./img/cat-2.jpg" alt="img"></div>
+                <div class="peice"><img id="p-3" src="./img/cat-3.jpg" alt="img"></div>
+                <div class="peice"><img id="p-4" src="./img/cat-4.jpg" alt="img"></div>
+            </div>
+            <div class="layer">
+                <div class="peice"><img id="p-5" src="./img/cat-5.jpg" alt="img"></div>
+                <div class="peice"><img id="p-6" src="./img/cat-6.jpg" alt="img"></div>
+                <div class="peice"><img id="p-7" src="./img/cat-7.jpg" alt="img"></div>
+                <div class="peice"><img id="p-8" src="./img/cat-8.jpg" alt="img"></div>
+            </div>
+            <div class="layer">
+                <div class="peice"><img id="p-9" src="./img/cat-9.jpg" alt="img"></div>
+                <div class="peice"><img id="p-10" src="./img/cat-10.jpg" alt="img"></div>
+                <div class="peice"><img id="p-11" src="./img/cat-11.jpg" alt="img"></div>
+                <div class="peice"><img id="p-12" src="./img/cat-12.jpg" alt="img"></div>
+            </div>
+            <div class="layer">
+                <div class="peice"><img id="p-13" src="./img/cat-13.jpg" alt="img"></div>
+                <div class="peice"><img id="p-14" src="./img/cat-14.jpg" alt="img"></div>
+                <div class="peice"><img id="p-15" src="./img/cat-15.jpg" alt="img"></div>
+                <div class="peice"><img id="p-16" src="./img/cat-16.jpg" alt="img"></div>
+            </div>
+        </div>
+        <div class="text-center mt-2 mb-3">
+            <button class="pl-4 pr-4 btn btn-primary" id="start">Start</button>
+            <button class="pl-4 pr-4 btn btn-primary" id="restart" style="display: none;">Restart</button>
+            <button  type="button" data-toggle="modal" data-target="#viewImage" class="pl-4 pr-4 ml-3 btn btn-success">View Image</button>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" id="viewImage">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Puzzle Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="/img/cat.jpg" class="img-fluid" alt="img">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+    <script>
+        // main variable (does not change)
+        var originalPuzzle = [ ["cat-1.jpg","cat-2.jpg","cat-3.jpg","cat-4.jpg"],
+                            ["cat-5.jpg","cat-6.jpg","cat-7.jpg","cat-8.jpg"],
+                            ["cat-9.jpg","cat-10.jpg","cat-11.jpg","cat-12.jpg"],
+                            ["cat-13.jpg","cat-14.jpg","cat-15.jpg","pointer.jpg"]]
+        var puzzlePics = ["cat-1.jpg","cat-2.jpg","cat-3.jpg","cat-4.jpg",
+                        "cat-5.jpg","cat-6.jpg","cat-7.jpg","cat-8.jpg",
+                        "cat-9.jpg","cat-10.jpg","cat-11.jpg","cat-12.jpg",
+                        "cat-13.jpg","cat-14.jpg","cat-15.jpg","cat-16.jpg"];
+    </script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
